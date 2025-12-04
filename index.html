@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ODS 3: Salud y Bienestar - Objetivos de Desarrollo Sostenible</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero-section {
+            background: linear-gradient(rgba(0, 82, 147, 0.8), rgba(0, 82, 147, 0.9)), url('https://via.placeholder.com/1920x600/005293/FFFFFF?text=Salud+Para+Todos') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 120px 0;
+            margin-bottom: 40px;
+        }
+        .goal-card {
+            transition: transform 0.3s;
+            height: 100%;
+        }
+        .goal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .progress-section {
+            background-color: #f8f9fa;
+            padding: 60px 0;
+        }
+        .icon-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #005293;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #005293;
+        }
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 40px 0 20px;
+        }
+        .un-blue {
+            background-color: #005293;
+        }
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #005293;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark un-blue sticky-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="resources/logo.webp" alt="Logo ONU" width="30" height="30" class="d-inline-block align-text-top me-2">
+            <span class="fw-bold">ODS 3: Salud y Bienestar</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#targets">Objetivos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#progress">Progreso</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#action">Desinformación</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#resources">Recursos</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero-section text-center">
+    <div class="container">
+        <h1 class="display-4 fw-bold mb-4">Garantizar una vida sana y promover el bienestar para todas las edades</h1>
+        <p class="lead mb-5">El Objetivo de Desarrollo Sostenible 3 busca garantizar la cobertura sanitaria universal y proporcionar acceso a medicamentos eficaces y asequibles para todos.</p>
+        <a href="#targets" class="btn btn-light btn-lg px-4 me-2">Explorar Objetivos</a>
+        <a href="#action" class="btn btn-outline-light btn-lg px-4">Desinformación</a>
+    </div>
+</section>
+
+<!-- INTRODUCTION -->
+<section class="container mb-5">
+    <div class="row align-items-center">
+        <div class="col-lg-8 mx-auto text-center">
+            <h2 class="section-title">Por qué importan la Salud y el Bienestar</h2>
+            <p class="lead">Se han logrado avances significativos en el aumento de la esperanza de vida y la reducción de algunas de las causas de muerte más comunes asociadas con la mortalidad infantil y materna. También se ha progresado considerablemente en el aumento del acceso al agua limpia y al saneamiento, la reducción de la malaria, la tuberculosis, la poliomielitis y la propagación del VIH/SIDA.</p>
+            <p>Sin embargo, lograr el ODS 3 requiere abordar una amplia gama de desafíos sanitarios y garantizar que todas las personas, en todas partes, puedan acceder a servicios de salud de calidad sin sufrir dificultades financieras.</p>
+        </div>
+    </div>
+</section>
+
+<!-- KEY TARGETS -->
+<section id="targets" class="container mb-5">
+    <h2 class="text-center section-title">Objetivos Clave del ODS 3</h2>
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+            <div class="card goal-card h-100">
+                <div class="card-body">
+                    <div class="icon-circle">
+                        <i class="fas fa-baby text-white fa-2x"></i>
+                    </div>
+                    <h5 class="card-title text-center">Salud Materna e Infantil</h5>
+                    <p class="card-text">Para 2030, reducir la razón mundial de mortalidad materna a menos de 70 por cada 100.000 nacidos vivos y poner fin a las muertes evitables de recién nacidos y niños menores de 5 años.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="card goal-card h-100">
+                <div class="card-body">
+                    <div class="icon-circle">
+                        <i class="fas fa-virus text-white fa-2x"></i>
+                    </div>
+                    <h5 class="card-title text-center">Fin de las Epidemias</h5>
+                    <p class="card-text">Para 2030, poner fin a las epidemias de SIDA, tuberculosis, malaria y enfermedades tropicales desatendidas y combatir la hepatitis, las enfermedades transmitidas por el agua y otras enfermedades transmisibles.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="card goal-card h-100">
+                <div class="card-body">
+                    <div class="icon-circle">
+                        <i class="fas fa-heartbeat text-white fa-2x"></i>
+                    </div>
+                    <h5 class="card-title text-center">Enfermedades No Transmisibles</h5>
+                    <p class="card-text">Reducir en un tercio la mortalidad prematura por enfermedades no transmisibles mediante la prevención y el tratamiento y promover la salud mental y el bienestar.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="card goal-card h-100">
+                <div class="card-body">
+                    <div class="icon-circle">
+                        <i class="fas fa-pills text-white fa-2x"></i>
+                    </div>
+                    <h5 class="card-title text-center">Cobertura Sanitaria Universal</h5>
+                    <p class="card-text">Lograr la cobertura sanitaria universal, incluida la protección contra riesgos financieros, el acceso a servicios de salud esenciales de calidad y el acceso a medicamentos y vacunas seguros, eficaces, de calidad y asequibles para todos.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="card goal-card h-100">
+                <div class="card-body">
+                    <div class="icon-circle">
+                        <i class="fas fa-syringe text-white fa-2x"></i>
+                    </div>
+                    <h5 class="card-title text-center">Investigación y Desarrollo</h5>
+                    <p class="card-text">Apoyar la investigación y el desarrollo de vacunas y medicamentos para las enfermedades transmisibles y no transmisibles que afectan primordialmente a los países en desarrollo.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="card goal-card h-100">
+                <div class="card-body">
+                    <div class="icon-circle">
+                        <i class="fas fa-hand-holding-medical text-white fa-2x"></i>
+                    </div>
+                    <h5 class="card-title text-center">Financiación de la Salud</h5>
+                    <p class="card-text">Aumentar considerablemente la financiación de la salud y la contratación, desarrollo, capacitación y retención del personal sanitario en los países en desarrollo.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROGRESS & CHALLENGES -->
+<section id="progress" class="progress-section">
+    <div class="container">
+        <h2 class="text-center section-title">Progreso y Desafíos</h2>
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="bg-white p-4 rounded shadow-sm h-100">
+                    <h4 class="text-success mb-3"><i class="fas fa-check-circle me-2"></i>Logros Recientes</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Entre 2000 y 2024, la esperanza de vida mundial aumentó de 67 años a 73,3 años</li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>El número de niños que mueren antes de cumplir 5 años se redujo a la mitad</li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>La mortalidad materna disminuyó en un tercio</li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Las nuevas infecciones por VIH disminuyeron significativamente</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="bg-white p-4 rounded shadow-sm h-100">
+                    <h4 class="text-warning mb-3"><i class="fas fa-exclamation-triangle me-2"></i>Desafíos Actuales</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-times text-warning me-2"></i>La pandemia de COVID-19 revirtió más de una década de avances en esperanza de vida</li>
+                        <li class="mb-2"><i class="fas fa-times text-warning me-2"></i>Las enfermedades no transmisibles causan casi tres cuartas partes de todas las muertes a nivel mundial</li>
+                        <li class="mb-2"><i class="fas fa-times text-warning me-2"></i>Las vacunaciones infantiles experimentaron la mayor disminución sostenida en unos 30 años</li>
+                        <li class="mb-2"><i class="fas fa-times text-warning me-2"></i>Las muertes por tuberculosis y malaria aumentaron en comparación con los niveles previos a la pandemia</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-12">
+                <h3 class="text-center mb-4 section-title">Estadísticas Globales de Salud</h3>
+            </div>
+            <div class="col-md-3 col-6 text-center mb-4">
+                <div class="stat-number">73%</div>
+                <p class="small">De las muertes son por ENT</p>
+            </div>
+            <div class="col-md-3 col-6 text-center mb-4">
+                <div class="stat-number">1.300M</div>
+                <p class="small">Personas vivían con discapacidad en 2021</p>
+            </div>
+            <div class="col-md-3 col-6 text-center mb-4">
+                <div class="stat-number">148M</div>
+                <p class="small">Niños menores de 5 años afectados por retraso en el crecimiento en 2022</p>
+            </div>
+            <div class="col-md-3 col-6 text-center mb-4">
+                <div class="stat-number">1.000M+</div>
+                <p class="small">Personas de 5 años o más vivían con obesidad en 2022</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TAKE ACTION -->
+<section id="action" class="container my-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+            <h2 class="section-title">Combate la Desinformación</h2>
+            <p class="lead mb-2 fw-bold">En una época de desarrollo creciente, la desinformación es la peor enfermedad.</p>
+            <p class="lead mb-5">Confía en nuestra plataforma de información verificada para asegurar que no estás siendo víctima de una campaña de información engañosa, gracias a:</p>
+
+            <!-- BOTÓN AGREGADO -->
+            <div class="mb-5">
+                <a href="feed.html" class="btn btn-primary btn-lg px-5">
+                    <i class="fas fa-newspaper me-2"></i> Ver Noticias Verificadas
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="text-center p-3">
+                <i class="fas fa-user-md fa-3x text-primary mb-3"></i>
+                <h5>Expertos Verificados</h5>
+                <p>En las redes sociales convencionales, cualquiera es un experto, y ni siquiera un título es garantía de nada. Ofrecemos opiniones de profesionales en la que su palabra se puede confiar.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="text-center p-3">
+                <i class="fas fa-syringe fa-3x text-primary mb-3"></i>
+                <h5>Información Factual y Consensuada</h5>
+                <p>Las vacunas nunca dieron autismo, beber lejía nunca curó el COVID, y tampoco nos intentaban implantar chips. Evita caer presa de la especulación basada en la ignorancia y el miedo leyendo la información tal y como es.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="text-center p-3">
+                <i class="fas fa-bullhorn fa-3x text-primary mb-3"></i>
+                <h5>Una Plataforma para la Salud</h5>
+                <p>Libre de política, emociones y opiniones personales, nuestra plataforma garantiza que te llegue la información más neutral de los hechos, sin que haya tenido la oportunidad de ser filtrada por sesgos.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CALL TO ACTION -->
+<section class="un-blue text-white py-5">
+    <div class="container text-center">
+        <h3 class="mb-3">Únete al Movimiento Global por una Mejor Salud</h3>
+        <p class="mb-4">Explora más sobre los Objetivos de Desarrollo Sostenible y cómo puedes contribuir a un mundo más saludable.</p>
+        <a href="https://www.un.org/sustainabledevelopment/es/health/" class="btn btn-light btn-lg" target="_blank">Más Información en ONU.org</a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="resources">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <h5>ODS 3: Salud y Bienestar</h5>
+                <p>Garantizar una vida sana y promover el bienestar en todas las edades es esencial para el desarrollo sostenible.</p>
+                <div class="d-flex mt-4">
+                    <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-instagram fa-lg"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h5>Enlaces Rápidos</h5>
+                <ul class="list-unstyled">
+                    <li><a href="https://www.un.org/sustainabledevelopment/es/health/" class="text-white-50 text-decoration-none" target="_blank">Resumen ODS 3 de la ONU</a></li>
+                    <li><a href="https://www.who.int/es" class="text-white-50 text-decoration-none" target="_blank">Organización Mundial de la Salud</a></li>
+                    <li><a href="https://www.un.org/sustainabledevelopment/es/health/" class="text-white-50 text-decoration-none" target="_blank">ONU - ODS 3 en Español</a></li>
+                    <li><a href="https://www.un.org/es/global-issues/health" class="text-white-50 text-decoration-none" target="_blank">Temas Globales de la ONU - Salud</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h5>Días Mundiales de la Salud</h5>
+                <ul class="list-unstyled">
+                    <li><span class="text-white-50">Día Mundial de la Salud (7 de abril)</span></li>
+                    <li><span class="text-white-50">Día Mundial sin Tabaco (31 de mayo)</span></li>
+                    <li><span class="text-white-50">Día Mundial de la Salud Mental (10 de octubre)</span></li>
+                    <li><span class="text-white-50">Día Mundial del SIDA (1 de diciembre)</span></li>
+                </ul>
+            </div>
+        </div>
+        <hr class="bg-white-50">
+        <div class="row">
+            <div class="col-md-6">
+                <p class="small mb-0">Esta página es con fines educativos basada en el contenido de los Objetivos de Desarrollo Sostenible de la ONU.</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <p class="small mb-0">&copy; 2023 Objetivos de Desarrollo Sostenible de la ONU. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- SCRIPT DE BOOTSTRAP -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM7j8/Rb5GZQ" crossorigin="anonymous"></script>
+</body>
+</html>

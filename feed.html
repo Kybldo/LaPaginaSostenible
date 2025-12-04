@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noticias Verificadas de Salud - ODS 3</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero-section {
+            background: linear-gradient(rgba(0, 82, 147, 0.85), rgba(0, 82, 147, 0.95)), url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 100px 0;
+            margin-bottom: 40px;
+        }
+        .un-blue {
+            background-color: #005293;
+        }
+        .news-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .news-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        .news-img {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+        .news-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: #005293;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .news-date {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        .news-excerpt {
+            color: #555;
+            line-height: 1.6;
+        }
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #005293;
+        }
+        .filter-btn {
+            border-radius: 20px;
+            padding: 5px 20px;
+            margin: 0 5px 10px;
+        }
+        .filter-btn.active {
+            background-color: #005293;
+            color: white;
+            border-color: #005293;
+        }
+        .verified-badge {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .sidebar-card {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .sidebar-title {
+            color: #005293;
+            font-weight: bold;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+        .expert-card {
+            border-left: 4px solid #005293;
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+        .expert-name {
+            font-weight: bold;
+            color: #005293;
+            margin-bottom: 5px;
+        }
+        .expert-title {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 10px;
+        }
+        .back-to-main {
+            text-decoration: none;
+            color: #005293;
+            font-weight: 500;
+        }
+        .back-to-main:hover {
+            text-decoration: underline;
+        }
+        .fact-check-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark un-blue sticky-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <img src="resources/logo.webp" alt="Logo ONU" width="30" height="30" class="d-inline-block align-text-top me-2">
+            <span class="fw-bold">ODS 3: Salud y Bienestar</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#targets">Objetivos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#progress">Progreso</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="news-feed.html">Desinformación</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#resources">Recursos</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero-section text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <a href="index.html" class="back-to-main d-inline-flex align-items-center mb-3" style="color: white; text-decoration: none">
+                    <i class="fas fa-arrow-left me-2" style="color: white; text-decoration: none"></i> Volver a la página principal
+                </a>
+                <h1 class="display-5 fw-bold mb-3">Noticias Verificadas de Salud</h1>
+                <p class="lead mb-4">Información confiable, basada en evidencia científica y verificada por expertos. Combate la desinformación en salud con contenido fiable.</p>
+                <div class="d-flex flex-wrap justify-content-center">
+                    <button class="filter-btn btn btn-outline-light active" data-filter="all">Todas</button>
+                    <button class="filter-btn btn btn-outline-light" data-filter="vaccines">Vacunas</button>
+                    <button class="filter-btn btn btn-outline-light" data-filter="nutrition">Nutrición</button>
+                    <button class="filter-btn btn btn-outline-light" data-filter="mental-health">Salud Mental</button>
+                    <button class="filter-btn btn btn-outline-light" data-filter="prevention">Prevención</button>
+                    <button class="filter-btn btn btn-outline-light" data-filter="myths">Desmontando Mitos</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<section class="container my-5">
+    <div class="row">
+        <!-- NEWS FEED -->
+        <div class="col-lg-8 mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="section-title mb-0">Últimas Noticias Verificadas</h2>
+                <div class="verified-badge">
+                    <i class="fas fa-check-circle me-1"></i> Información Verificada
+                </div>
+            </div>
+
+            <!-- FACT CHECK BOX -->
+            <div class="fact-check-box">
+                <div class="d-flex align-items-start">
+                    <i class="fas fa-search fa-2x text-success me-3 mt-1"></i>
+                    <div>
+                        <h5 class="mb-2">Nuestro proceso de verificación</h5>
+                        <p class="mb-0">Todas las noticias publicadas en esta plataforma pasan por un riguroso proceso de fact-checking realizado por nuestro equipo de expertos en salud. Revisamos fuentes científicas, consultamos estudios revisados por pares y verificamos con organizaciones sanitarias reconocidas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEWS ITEMS -->
+            <div class="row" id="news-container">
+                <!-- Noticia 1 -->
+                <div class="col-md-6 mb-4" data-category="vaccines">
+                    <div class="card news-card h-100">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="news-img" alt="Vacunación">
+                            <div class="news-category">Vacunas</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="news-date mb-2"><i class="far fa-calendar me-1"></i> 15 de octubre, 2023</div>
+                            <h5 class="card-title">Las vacunas de ARNm no alteran el ADN humano: evidencia científica</h5>
+                            <p class="news-excerpt">Un estudio exhaustivo publicado en Nature confirma que las vacunas de ARNm no interactúan con el genoma humano, desmintiendo una de las afirmaciones más comunes de la desinformación.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="badge bg-success">Verificado</span>
+                                <a href="#" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newsModal1">Leer más</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Noticia 2 -->
+                <div class="col-md-6 mb-4" data-category="nutrition">
+                    <div class="card news-card h-100">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="news-img" alt="Nutrición">
+                            <div class="news-category">Nutrición</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="news-date mb-2"><i class="far fa-calendar me-1"></i> 10 de octubre, 2023</div>
+                            <h5 class="card-title">Los edulcorantes artificiales y su impacto real en la salud</h5>
+                            <p class="news-excerpt">La OMS actualiza sus recomendaciones sobre edulcorantes no azucarados basándose en evidencia científica reciente. Analizamos qué dice realmente la ciencia.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="badge bg-success">Verificado</span>
+                                <a href="#" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newsModal2">Leer más</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Noticia 3 -->
+                <div class="col-md-6 mb-4" data-category="mental-health">
+                    <div class="card news-card h-100">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1598257006626-5b9f42d12318?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="news-img" alt="Salud Mental">
+                            <div class="news-category">Salud Mental</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="news-date mb-2"><i class="far fa-calendar me-1"></i> 5 de octubre, 2023</div>
+                            <h5 class="card-title">El uso de redes sociales y la salud mental adolescente: datos reales</h5>
+                            <p class="news-excerpt">Un meta-análisis de 72 estudios revela la compleja relación entre redes sociales y salud mental, desmintiendo afirmaciones simplistas que circulan en internet.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="badge bg-success">Verificado</span>
+                                <a href="#" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newsModal3">Leer más</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Noticia 4 -->
+                <div class="col-md-6 mb-4" data-category="myths">
+                    <div class="card news-card h-100">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="news-img" alt="Desmontando Mitos">
+                            <div class="news-category">Desmontando Mitos</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="news-date mb-2"><i class="far fa-calendar me-1"></i> 28 de septiembre, 2023</div>
+                            <h5 class="card-title">"Beber lejía cura el COVID": el peligroso mito que causó miles de hospitalizaciones</h5>
+                            <p class="news-excerpt">Investigación documenta el origen y propagación de esta falsa creencia, y cómo la desinformación en redes sociales puede tener consecuencias letales.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="badge bg-success">Verificado</span>
+                                <a href="#" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newsModal4">Leer más</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Noticia 5 -->
+                <div class="col-md-6 mb-4" data-category="prevention">
+                    <div class="card news-card h-100">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="news-img" alt="Prevención">
+                            <div class="news-category">Prevención</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="news-date mb-2"><i class="far fa-calendar me-1"></i> 20 de septiembre, 2023</div>
+                            <h5 class="card-title">Detección temprana del cáncer: qué métodos realmente funcionan según la evidencia</h5>
+                            <p class="news-excerpt">Guía actualizada sobre métodos de detección temprana del cáncer respaldados por estudios científicos, desmintiendo "pruebas milagrosas" promovidas en internet.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="badge bg-success">Verificado</span>
+                                <a href="#" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newsModal5">Leer más</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Noticia 6 -->
+                <div class="col-md-6 mb-4" data-category="vaccines">
+                    <div class="card news-card h-100">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="news-img" alt="Vacunas">
+                            <div class="news-category">Vacunas</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="news-date mb-2"><i class="far fa-calendar me-1"></i> 15 de septiembre, 2023</div>
+                            <h5 class="card-title">Vacunas infantiles y autismo: 25 años después del estudio fraudulento</h5>
+                            <p class="news-excerpt">A 25 años de la publicación del fraudulento estudio que vinculaba vacunas con autismo, analizamos su impacto duradero en la salud pública mundial.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="badge bg-success">Verificado</span>
+                                <a href="#" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newsModal6">Leer más</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGINATION -->
+            <nav aria-label="Navegación de noticias" class="mt-5">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Anterior</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Siguiente</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="col-lg-4">
+            <!-- EXPERTOS VERIFICADOS -->
+            <div class="card sidebar-card mb-4">
+                <div class="card-body">
+                    <h5 class="sidebar-title mb-4"><i class="fas fa-user-md me-2"></i> Expertos Verificados</h5>
+
+                    <div class="expert-card">
+                        <div class="expert-name">Dra. Elena Martínez</div>
+                        <div class="expert-title">Epidemióloga, PhD en Salud Pública</div>
+                        <p class="mb-0 small">Especialista en enfermedades infecciosas con 15 años de experiencia. Verificada por la OMS.</p>
+                    </div>
+
+                    <div class="expert-card">
+                        <div class="expert-name">Dr. Carlos Ruiz</div>
+                        <div class="expert-title">Inmunólogo, Hospital Universitario Central</div>
+                        <p class="mb-0 small">Investigador principal en estudios de vacunas. Miembro de la Sociedad Internacional de Inmunología.</p>
+                    </div>
+
+                    <div class="expert-card">
+                        <div class="expert-name">Dra. Sofía Chen</div>
+                        <div class="expert-title">Nutricionista, MSc en Ciencias de la Alimentación</div>
+                        <p class="mb-0 small">Autora de múltiples estudios sobre mitos nutricionales. Colaboradora de la FAO.</p>
+                    </div>
+
+                    <div class="expert-card">
+                        <div class="expert-name">Dr. Roberto Jiménez</div>
+                        <div class="expert-title">Psiquiatra, especialista en salud mental digital</div>
+                        <p class="mb-0 small">Investigador del impacto de la desinformación en salud mental. Verificado por colegios profesionales.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FUENTES CONFIABLES -->
+            <div class="card sidebar-card mb-4">
+                <div class="card-body">
+                    <h5 class="sidebar-title mb-4"><i class="fas fa-book me-2"></i> Fuentes Confiables</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a href="https://www.who.int/es" target="_blank" class="text-decoration-none"><i class="fas fa-external-link-alt me-2"></i> Organización Mundial de la Salud</a></li>
+                        <li class="mb-2"><a href="https://www.cdc.gov/spanish/" target="_blank" class="text-decoration-none"><i class="fas fa-external-link-alt me-2"></i> Centros para el Control de Enfermedades (CDC)</a></li>
+                        <li class="mb-2"><a href="https://www.thelancet.com/" target="_blank" class="text-decoration-none"><i class="fas fa-external-link-alt me-2"></i> The Lancet</a></li>
+                        <li class="mb-2"><a href="https://www.nejm.org/" target="_blank" class="text-decoration-none"><i class="fas fa-external-link-alt me-2"></i> New England Journal of Medicine</a></li>
+                        <li class="mb-2"><a href="https://www.nature.com/" target="_blank" class="text-decoration-none"><i class="fas fa-external-link-alt me-2"></i> Nature</a></li>
+                        <li class="mb-2"><a href="https://www.science.org/" target="_blank" class="text-decoration-none"><i class="fas fa-external-link-alt me-2"></i> Science</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- NEWSLETTER -->
+            <div class="card sidebar-card mb-4 bg-light border-primary">
+                <div class="card-body text-center">
+                    <h5 class="mb-3"><i class="fas fa-envelope me-2"></i> Suscríbete a nuestro boletín</h5>
+                    <p class="small mb-3">Recibe noticias verificadas directamente en tu correo. Sin desinformación, solo evidencia científica.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Tu correo electrónico">
+                        <button class="btn btn-primary" type="button">Suscribirse</button>
+                    </div>
+                    <p class="small text-muted mb-0">Respetamos tu privacidad. Nunca compartiremos tu información.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MODALS FOR NEWS DETAILS -->
+
+<!-- Modal 1 -->
+<div class="modal fade" id="newsModal1" tabindex="-1" aria-labelledby="newsModal1Label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newsModal1Label">Las vacunas de ARNm no alteran el ADN humano: evidencia científica</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="img-fluid rounded mb-3" alt="Vacunación">
+                <p><strong>Fecha de publicación:</strong> 15 de octubre, 2023</p>
+                <p><strong>Categoría:</strong> Vacunas</p>
+                <p><strong>Nivel de verificación:</strong> Alto - Revisado por 3 expertos independientes</p>
+
+                <h6>Resumen</h6>
+                <p>Un estudio exhaustivo publicado en la revista Nature confirma que las vacunas de ARNm no interactúan con el genoma humano, desmintiendo una de las afirmaciones más comunes de la desinformación sobre vacunas.</p>
+
+                <h6>Detalles científicos</h6>
+                <p>La investigación, realizada por un equipo internacional de genetistas y virólogos, analizó muestras de más de 1,000 pacientes vacunados con vacunas de ARNm. Los investigadores utilizaron técnicas de secuenciación de ADN de última generación para buscar cualquier evidencia de integración del ARN mensajero en el genoma humano.</p>
+
+                <p>Los resultados fueron concluyentes: no se encontró ninguna evidencia de que el ARN de las vacunas se integre en el ADN humano. Esto se debe a que el ARN mensajero funciona en el citoplasma de las células, mientras que el ADN está protegido dentro del núcleo celular. Además, el ARN mensajero es degradado naturalmente por la célula pocos días después de la vacunación.</p>
+
+                <h6>Fuentes</h6>
+                <ul>
+                    <li>Nature (2023). "Absence of detectable vaccine mRNA integration into human genome". DOI: 10.1038/s41586-023-06500-y</li>
+                    <li>Journal of Medical Virology (2023). "Mechanisms of mRNA vaccine action and safety"</li>
+                    <li>Declaración de la Sociedad Internacional de Genética Humana sobre vacunas de ARNm</li>
+                </ul>
+
+                <div class="alert alert-info mt-3">
+                    <i class="fas fa-info-circle me-2"></i> <strong>Para recordar:</strong> Las vacunas de ARNm son una tecnología segura y efectiva que ha sido estudiada durante décadas antes de su uso contra el COVID-19.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Compartir información verificada</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 2 (simplificado, deberías crear uno para cada noticia) -->
+<div class="modal fade" id="newsModal2" tabindex="-1" aria-labelledby="newsModal2Label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newsModal2Label">Los edulcorantes artificiales y su impacto real en la salud</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Contenido detallado sobre los edulcorantes artificiales...</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Compartir información verificada</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <h5>Noticias Verificadas de Salud</h5>
+                <p>Una plataforma dedicada a combatir la desinformación en salud con evidencia científica y expertos verificados.</p>
+                <div class="d-flex mt-4">
+                    <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-instagram fa-lg"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h5>Enlaces Rápidos</h5>
+                <ul class="list-unstyled">
+                    <li><a href="index.html" class="text-white-50 text-decoration-none">Página Principal ODS 3</a></li>
+                    <li><a href="index.html#action" class="text-white-50 text-decoration-none">Combate la Desinformación</a></li>
+                    <li><a href="https://www.who.int/es" class="text-white-50 text-decoration-none" target="_blank">Organización Mundial de la Salud</a></li>
+                    <li><a href="https://www.un.org/sustainabledevelopment/es/health/" class="text-white-50 text-decoration-none" target="_blank">ONU - ODS 3 en Español</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h5>Nuestro Compromiso</h5>
+                <ul class="list-unstyled">
+                    <li><span class="text-white-50"><i class="fas fa-check-circle me-2"></i>Información basada en evidencia</span></li>
+                    <li><span class="text-white-50"><i class="fas fa-check-circle me-2"></i>Expertos verificados</span></li>
+                    <li><span class="text-white-50"><i class="fas fa-check-circle me-2"></i>Sin conflicto de intereses</span></li>
+                    <li><span class="text-white-50"><i class="fas fa-check-circle me-2"></i>Transparencia en fuentes</span></li>
+                </ul>
+            </div>
+        </div>
+        <hr class="bg-white-50">
+        <div class="row">
+            <div class="col-md-6">
+                <p class="small mb-0">Esta página es con fines educativos basada en el contenido de los Objetivos de Desarrollo Sostenible de la ONU.</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <p class="small mb-0">&copy; 2023 Noticias Verificadas de Salud - ODS 3. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- SCRIPT DE BOOTSTRAP -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM7j8/Rb5GZQ" crossorigin="anonymous"></script>
+
+<!-- FILTERING SCRIPT -->
+<script>
+    $(document).ready(function(){
+        // Filter news items
+        $('.filter-btn').click(function(){
+            var filterValue = $(this).data('filter');
+
+            // Update active button
+            $('.filter-btn').removeClass('active');
+            $(this).addClass('active');
+
+            if(filterValue === 'all') {
+                $('[data-category]').show();
+            } else {
+                $('[data-category]').each(function(){
+                    if($(this).data('category') === filterValue) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>
